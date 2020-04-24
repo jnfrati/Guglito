@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import {db} from '../FirestoreConfig';
 import { Form, Input,  Button } from "antd";
@@ -11,18 +10,17 @@ const Edit = (props) => {
     const [key, setKey] = useState('');
 
 
-    const boards = db.collection('Boards');
+    const Boards = db.collection('Boards');
 
 
         useEffect(() => {
-            boards.doc(props.match.params.id).get().then((doc) => {
+            Boards.doc(props.match.params.id).get().then((doc) => {
                 if (doc.exists) {
-                    const board = doc.data();
+                    const {nombre, apellido, sala} = doc.data()
                     setKey(doc.id);
-                    setNombre(board.nombre);
-                    setApellido(board.apellido);
-                    setSala(board.sala)
-
+                    setNombre(nombre);
+                    setApellido(apellido);
+                    setSala(sala)
                 } else {
                     console.log("No such document!");
                 }
@@ -33,7 +31,7 @@ const Edit = (props) => {
 
     const onSubmit = () => {
 
-        const updateRef = boards.doc(key);
+        const updateRef = Boards.doc(key);
         updateRef.set({
             nombre,
             apellido,

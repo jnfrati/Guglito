@@ -12,13 +12,13 @@ const Create = (props) => {
     const [sala, setSala] = useState('');
     const [key, setKey] = useState('');
 
-    const boards = db.collection('Boards');
+    const Boards = db.collection('Boards');
 
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        boards.add({
+        Boards.add({
             nombre,
             apellido,
             sala

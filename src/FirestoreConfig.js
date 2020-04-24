@@ -18,5 +18,8 @@ if (!firebase.apps.length) {
 
 // Get a Firestore instance
 export const db = firebase.firestore();
+export const auth = firebase.auth();
+
+export default firebase;
 
 

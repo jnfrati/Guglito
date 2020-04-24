@@ -1,31 +1,32 @@
 import React, {useState, useEffect} from "react";
-import ReactDOM from 'react-dom';
 import {Link} from 'react-router-dom';
 import {db} from '../FirestoreConfig';
-import {Form, Input, Button} from "antd";
+import {Button} from "antd";
 
 const Show = (props) => {
-    const [nombre, setNombre] = useState('');
-    const [apellido, setApellido] = useState('');
-    const [sala, setSala] = useState('');
-    const [key, setKey] = useState('');
     const [usuarios, setUsuarios] = useState([]);
 
     useEffect(() => {
-        const boards = db.collection('Boards');
+        const Boards = db.collection('Boards');
 
-        boards.get().then((docs) => {
-            if (docs && docs.length) {
-                setUsuarios(docs);
+        Boards.get().then((docs) => {
+            if (!docs.empty) {
+                let usuarios = [];
+                docs.forEach(doc => {
+                    usuarios.push(
+                    {
+                        key:doc.id, ...doc.data()
+                    })
+                })
+                setUsuarios(usuarios);
             }
         });
     }, [])
 
 
     const borrar = (id) => {
-        db.collection('boards').doc(id).delete().then(() => {
+        db.collection('Boards').doc(id).delete().then(() => {
             console.log("Document successfully deleted!");
-            this.props.history.push("/")
         }).catch((error) => {
             console.error("Error removing document: ", error);
         });
@@ -37,21 +38,33 @@ const Show = (props) => {
             <div className="panel panel-default">
                 <div className="panel-heading">
                     <h4><Link to="/">Lista de alumnos</Link></h4>
-                    <ul>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Sala</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {
-                            usuarios.map(({nombre, apellido, sala}, index, array) => {
+                            usuarios.map(({nombre, apellido, sala, key}) => {
                                 return (
-                                    <li>
-                                        Nombre: {nombre}
-                                        Apellido: {apellido}
-                                        Sala: {sala}
-                                    </li>
+                                    <tr key={key}>
+                                        <td>{nombre}</td>
+                                        <td>{apellido}</td>
+                                        <td>{sala}</td>
+                                        <td>
+                                            <Button> <Link to={`/edit/${key}`}>Editar</Link>&nbsp;</Button>
+                                            <Button onClick={() => borrar(key)} className="btn btn-danger">Borrar</Button>
+                                        </td>
+                                    </tr>
                                 )
                             })
                         }
-                    </ul>
-                    <Link to={`/edit/${key}`} class="btn btn-success">Editar</Link>&nbsp;
-                    <Button onClick={() => borrar(key)} class="btn btn-danger">Borrar</Button>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
