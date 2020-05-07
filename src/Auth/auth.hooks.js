@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {auth} from '../../src/FirestoreConfig';
 
 export default function useAuthState() {
-    const [user, setUser] = useState <any \ null> (null);
+    const [user, setUser] = useState (null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     auth.onAuthStateChanged((user)=>{
@@ -18,4 +18,3 @@ export default function useAuthState() {
     return {isLoggedIn, user}
 }
 
-export default useAuthState;

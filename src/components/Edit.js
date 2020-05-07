@@ -50,7 +50,7 @@ const Edit = (props) => {
     }
 
         return (
-            <div className="container" style={{width: 300}}>
+            <div className="container" style={{width: 300, padding: '20px 50px'}}>
             <div className="panel panel-default">
                     <div className="panel-heading"/>
                     <div className="panel-body">
