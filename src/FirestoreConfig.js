@@ -2,7 +2,7 @@ import firebase from "firebase";
 import 'firebase/firestore';
 
 
-const settings = {timestampsInSnapshots:true}
+//const settings = {timestampsInSnapshots:true} //WHY IS THISSS
 const config = {
     apiKey: "AIzaSyCbkerBIedjhPngd6I6pWPVejqIk3fu00k",
     authDomain: "guglito-23eda.firebaseapp.com",
