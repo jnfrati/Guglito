@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react";
-import ReactDOM from 'react-dom';
+import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import {db} from '../FirestoreConfig';
 import { Form, Input,  Button } from "antd";
@@ -37,7 +36,7 @@ const Create = (props) => {
     }
 
     return (
-        <div className="container" style={{width: 300}}>
+        <div className="container" style={{width: 300, padding: '20px 50px'}}>
             <div class="panel panel-default">
                 <div class="panel-heading"/>
                 <div class="panel-body">

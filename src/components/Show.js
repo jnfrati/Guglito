@@ -34,7 +34,7 @@ const Show = (props) => {
 
 
     return (
-        <div className="container">
+        <div className="container" style={{width: 400, padding: '20px 10px'}}>
             <div className="panel panel-default">
                 <div className="panel-heading">
                     <h4><Link to="/">Lista de alumnos</Link></h4>

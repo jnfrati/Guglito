@@ -1,11 +1,11 @@
 import React from 'react';
 import AuthRouter from './auth.routes';
 
-export default function Auth({basename}: {basename: string}) {
+export default function Auth({basename}) {
 
     return (
         <div>
-            <AuthRouter basename-{basename}/>
+            <AuthRouter basename={basename}/>
         </div>
     )
 }

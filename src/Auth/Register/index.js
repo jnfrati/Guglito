@@ -7,7 +7,7 @@ export default function Register() {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
 
-    function register(): void{
+    function register() {
         auth.createUserWithEmailAndPassword(user, password);
     }
 

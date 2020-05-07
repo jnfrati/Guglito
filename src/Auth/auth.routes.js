@@ -1,9 +1,9 @@
 import React from 'react';
-import { Switch, Route, useRouteMatch, Redirect, useLocation} from 'react-router-dom';
+import { Switch, Route, useRouteMatch, Redirect} from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 
-export default function AuthRouter({basename} : {basename: string}) {
+export default function AuthRouter({basename}) {
     const {path} = useRouteMatch();
     return (
         <div>
@@ -15,7 +15,7 @@ export default function AuthRouter({basename} : {basename: string}) {
                    <Register/>
                 </Route>
                 <Route path={`${path}/`}>
-                    <Register to={`${basename}/login`}></Register>
+                    <Redirect to={`${basename}/login`}></Redirect>
                 </Route>
             </Switch>
         </div>
